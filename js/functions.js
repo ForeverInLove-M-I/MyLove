@@ -150,12 +150,7 @@ function adjustCodePosition() {
 }
 
 function showLoveU() {
-	$('#loveu').fadeIn(3000, function(){
-		// start the snake-like glow after it's visible
-		setTimeout(function(){
-			$('#loveu').addClass('glow-animate');
-		}, 400);
-	});
+	$('#loveu').fadeIn(3000);
 }
 
 // --- Local quick-test (no-op in browser). To run: node js/functions.js ---

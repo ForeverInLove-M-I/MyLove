@@ -6,74 +6,15 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 #elapseClock{text-align:right;font-size:18px;margin-top:10px;margin-bottom:10px}
 #words{font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;width:500px;font-size:22px;color:#4a3b4a}
 /* place words centered inside the heart container */
-#loveHeart #words{position:absolute;top:50%;left:50%;transform:translate(-50%,-10%);width:70%;text-align:center;pointer-events:none}
+#loveHeart #words{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;text-align:center;pointer-events:none}
 #messages{display:none;text-align:center;font-size:30px;color:#5a3b5a}
 #elapseClock .digit{font-family:"digit";font-size:40px;text-align:center;color:#4b2b4b}
 #loveu{padding:10px;font-size:20px;margin-top:60px;margin-right:80px;text-align:right;display:none;color:#4a3b4a}
 #loveu .signature{margin-top:10px;font-size:18px;font-style:italic;color:#6a4b6a}
 
-/* Snake-like white glow that travels across the "I will always love you" text */
-#loveu{position:relative;overflow:visible}
-#loveu::before{
-	content: '';
-	position: absolute;
-	top: 0;
-	left: -40%;
-	width: 40%;
-	height: 100%;
-	pointer-events: none;
-	background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
-	filter: blur(8px);
-	opacity: 0; /* start hidden, activated by .glow-animate */
-	transform: translate3d(0,0,0);
-}
-
-/* when .glow-animate is present, run the snake animation endlessly */
-.glow-animate::before{
-		animation: snakeGlow 2.6s ease-in-out infinite;
-		opacity: 1;
-}
-
-@keyframes snakeGlow{
-	0%   { left: -40%; width: 30%; opacity: 0 }
-	10%  { opacity: 1 }
-	50%  { left: 60%; width: 40%; opacity: 1 }
-	90%  { opacity: 1 }
-	100% { left: 120%; width: 30%; opacity: 0 }
-}
-
-/* NEW: make the glow apply specifically around the .glow-text span */
+/* Removed animated glow: keep simple, readable text styling for .glow-text */
 .glow-text{position:relative;display:inline-block;color:inherit}
-.glow-text::after{
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: -100%;
-	transform: translateY(-50%);
-	height: 1.2em;
-	width: 100%;
-	pointer-events: none;
-	background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
-	filter: blur(6px);
-	mix-blend-mode: screen;
-	opacity: 0;
-}
-.glow-animate .glow-text::after{
-	animation: glowSlide 2.2s ease-in-out forwards;
-	opacity: 1;
-}
-
-@keyframes glowSlide{
-	0% { left: -100%; opacity: 0 }
-	15% { opacity: 1 }
-	60% { left: 100%; opacity: 1 }
-	100% { left: 200%; opacity: 0 }
-}
-
-/* small outline glow to emphasize border */
-.glow-animate .glow-text{
-	text-shadow: 0 0 8px rgba(255,255,255,0.18), 0 1px 0 rgba(0,0,0,0.04);
-}
+.glow-text{font-weight:600}
 #clickSound{display:none}
 #code{width:440px;min-height:400px;color:#2b2030;font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";font-size:13px;background:rgba(255,255,255,0.85);padding:24px;border-radius:12px;box-shadow:0 8px 24px rgba(70,40,80,0.12);margin:20px}
 #code .string{color:#6d5ef0}
@@ -100,10 +41,11 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	#content{display:flex;flex-direction:column;align-items:center;padding:12px;max-width:100%;margin:10px}
 	/* make the code panel tall to push the heart below the fold so user scrolls */
 	#code{width:100%;min-height:72vh;padding:16px;margin:10px 0;border-radius:10px}
-	#loveHeart{width:100%;height:auto;flex:none;margin:24px 0 40px 0}
+		#loveHeart{width:100%;height:auto;flex:none;margin:24px 0 40px 0}
 	/* make canvas responsive: use viewport width to scale nicely on phones */
 	#garden{width:100%;height:60vw;max-height:520px}
-	#words{width:100%;font-size:18px;text-align:center}
+		#words{width:100%;font-size:18px;text-align:center}
+		#loveHeart #words{top:50%;left:50%;transform:translate(-50%,-50%);width:92%}
 	#messages{font-size:22px}
 	#elapseClock .digit{font-size:32px}
 	#icon{font-size:48px}
