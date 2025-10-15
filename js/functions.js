@@ -127,13 +127,26 @@ function showMessages() {
 }
 
 function adjustWordsPosition() {
-	$('#words').css("position", "absolute");
-	$('#words').css("top", $("#garden").position().top + 195);
-	$('#words').css("left", $("#garden").position().left + 70);
+	// Position words relative to the garden canvas using offsets.
+	// Use transform to avoid causing layout reflows/jumps.
+	var gardenPos = $("#garden").position();
+	$('#words').css({
+		position: 'absolute',
+		top: gardenPos.top + 180 + 'px',
+		left: gardenPos.left + 70 + 'px',
+		transform: 'translateZ(0)'
+	});
 }
 
 function adjustCodePosition() {
-	$('#code').css("margin-top", ($("#garden").height() - $("#code").height()) / 2);
+	// Use transform-based centering to visually center #code without changing layout size.
+	var code = $('#code');
+	var gardenH = $("#garden").height();
+	var codeH = code.height();
+	var offset = (gardenH - codeH) / 2;
+	code.css({
+		transform: 'translateY(' + offset + 'px)'
+	});
 }
 
 function showLoveU() {
