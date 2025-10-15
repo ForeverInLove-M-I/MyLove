@@ -166,9 +166,30 @@ function timeElapse(date){
 	}
 	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
 	$("#elapseClock").html(result);
+	
+	// Apply mobile-specific font sizes after updating HTML
+	if (window.innerWidth <= 600) {
+		$('#elapseClock .digit').css('font-size', '9px');
+	}
 }
 
 function showMessages() {
+	// Apply mobile-specific styles directly
+	if (window.innerWidth <= 600) {
+		$('#messages').css({
+			'font-size': '8px',
+			'margin-bottom': '3px',
+			'line-height': '1.1'
+		});
+		$('#elapseClock').css({
+			'margin': '2px 0',
+			'font-size': '8px'
+		});
+		$('#elapseClock .digit').css({
+			'font-size': '9px'
+		});
+	}
+	
 	// Delay the appearance of the words container
 	setTimeout(function() {
 		$('#words').addClass('visible');
