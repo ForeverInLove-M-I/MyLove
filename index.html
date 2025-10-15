@@ -53,7 +53,8 @@
 		</div>
 		<div id="loveHeart">
 			<canvas id="garden"></canvas>
-			<div id="words">
+			<!-- Desktop text container -->
+			<div id="words" class="desktop-only">
 				<div id="messages">
 					&lt;3 Our Time Together &lt;3
 					<div id="elapseClock"></div>
@@ -62,6 +63,18 @@
 					<span class="glow-text">I will always love you</span><br/>
 					<div class="signature">- your Мавпочка</div>
 				</div>
+			</div>
+			<!-- Mobile text container - inside heart -->
+			<div id="wordsMobile" class="mobile-only">
+				<div id="messagesMobile">
+					&lt;3 Our Time Together &lt;3
+					<div id="elapseClockMobile"></div>
+				</div>
+			</div>
+			<!-- Mobile text container - below heart -->
+			<div id="loveuMobile" class="mobile-only">
+				I will always love you<br/>
+				<span class="signature">- your Мавпочка</span>
 			</div>
 		</div>
 	</div>

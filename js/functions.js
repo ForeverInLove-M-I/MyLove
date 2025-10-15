@@ -167,9 +167,9 @@ function timeElapse(date){
 	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
 	$("#elapseClock").html(result);
 	
-	// Apply mobile-specific font sizes after updating HTML
-	if (window.innerWidth <= 600) {
-		$('#elapseClock .digit').css('font-size', '9px');
+	// Also update mobile clock if it exists
+	if ($("#elapseClockMobile").length > 0) {
+		$("#elapseClockMobile").html(result);
 	}
 }
 
@@ -179,59 +179,18 @@ function showMessages() {
 		showMessagesMobile();
 	} else {
 		// Desktop: original method
-		setTimeout(function() {
-			adjustWordsPosition();
-			$('#messages').fadeIn(5000, function() {
-				showLoveU();
-			});
-		}, 1000);
+		adjustWordsPosition();
+		$('#messages').fadeIn(5000, function() {
+			showLoveU();
+		});
 	}
 }
 
 function showMessagesMobile() {
-	// Mobile-specific method
-	// Show words container immediately
-	$('#words').css('opacity', '1');
-	
-	// Apply small font sizes and show messages inside heart
-	$('#messages').css({
-		'display': 'block',
-		'font-size': '8px',
-		'margin-bottom': '3px',
-		'line-height': '1.1',
-		'color': '#fff',
-		'text-shadow': '0 1px 3px rgba(0,0,0,0.5)'
-	});
-	
-	$('#elapseClock').css({
-		'margin': '2px 0',
-		'font-size': '8px',
-		'color': '#fff',
-		'text-shadow': '0 1px 3px rgba(0,0,0,0.5)'
-	});
-	
-	// Show the messages
-	$('#messages').show();
-	
-	// Apply digit styles after a brief delay to ensure elements exist
-	setTimeout(function() {
-		$('#elapseClock .digit').css({
-			'font-size': '9px',
-			'color': '#fff',
-			'text-shadow': '0 1px 3px rgba(0,0,0,0.5)'
-		});
-	}, 100);
-	
-	// Show love message below heart after delay
-	setTimeout(function() {
-		$('#loveu').css({
-			'display': 'block',
-			'font-size': '16px',
-			'color': '#fff',
-			'text-shadow': '0 2px 4px rgba(0,0,0,0.5)'
-		});
-		$('#loveu').show();
-	}, 2000);
+	// Mobile text is already visible in HTML, no need to fade in
+	// Mobile elements are automatically shown by CSS
+	// Messages inside heart are already styled by CSS
+	// Just ensure they're visible (they should be by default now)
 }
 
 function adjustWordsPosition() {

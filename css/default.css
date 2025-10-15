@@ -34,8 +34,16 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	#words{width:100%;text-align:center}
 }
 
+/* Hide mobile elements on desktop */
+.mobile-only{display:none}
+.desktop-only{display:block}
+
 /* Mobile: phones and small devices */
 @media (max-width:600px) {
+	/* Show only mobile elements, hide desktop */
+	.mobile-only{display:block}
+	.desktop-only{display:none !important}
+	
 	body{font-size:15px}
 	/* Stack vertically with proper spacing */
 	#content{
@@ -81,8 +89,8 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		transform:scale(0.9);
 		transform-origin:center center
 	}
-	/* Text container - positioned inside heart */
-	#words{
+	/* Mobile text container - inside heart */
+	#wordsMobile{
 		width:60%;
 		text-align:center;
 		position:absolute;
@@ -90,12 +98,26 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		left:50%;
 		transform:translate(-50%, -50%);
 		z-index:10;
-		pointer-events:none;
-		opacity:0;
-		transition:opacity 2s ease-in
+		pointer-events:none
 	}
-	#words.visible{
-		opacity:1
+	#messagesMobile{
+		font-size:8px;
+		color:#fff;
+		margin-bottom:3px;
+		text-shadow:0 1px 3px rgba(0,0,0,0.5);
+		line-height:1.2
+	}
+	#elapseClockMobile{
+		margin:2px 0;
+		color:#fff;
+		text-shadow:0 1px 3px rgba(0,0,0,0.5);
+		font-size:8px
+	}
+	#elapseClockMobile .digit{
+		font-size:9px;
+		color:#fff;
+		text-shadow:0 1px 3px rgba(0,0,0,0.5);
+		font-family:"digit"
 	}
 	/* Messages inside heart - very small (60% reduction) */
 	#loveHeart #words #messages{
@@ -118,27 +140,26 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		text-shadow:0 1px 3px rgba(0,0,0,0.5) !important;
 		font-family:"digit" !important
 	}
-	/* Love message below heart - positioned further down */
-	#loveu{
-		display:none !important;
-		font-size:16px !important;
-		color:#fff !important;
-		margin-top:25px !important;
-		text-shadow:0 2px 4px rgba(0,0,0,0.5) !important;
-		line-height:1.5 !important;
-		position:absolute !important;
-		bottom:-110px !important;
-		left:50% !important;
-		transform:translateX(-50%) !important;
-		width:90% !important;
-		text-align:center !important
+	/* Mobile love message below heart */
+	#loveuMobile{
+		font-size:16px;
+		color:#fff;
+		text-shadow:0 2px 4px rgba(0,0,0,0.5);
+		line-height:1.5;
+		position:absolute;
+		bottom:-110px;
+		left:50%;
+		transform:translateX(-50%);
+		width:90%;
+		text-align:center
 	}
-	.signature{
-		margin-top:10px !important;
-		font-style:italic !important;
-		color:#fff !important;
-		font-size:14px !important;
-		text-shadow:0 2px 4px rgba(0,0,0,0.5) !important
+	#loveuMobile .signature{
+		margin-top:10px;
+		font-style:italic;
+		color:#fff;
+		font-size:14px;
+		text-shadow:0 2px 4px rgba(0,0,0,0.5);
+		display:block
 	}
 	#icon{font-size:48px}
 	/* hide small inline heart inside the code panel on phones to avoid duplicate icons */
