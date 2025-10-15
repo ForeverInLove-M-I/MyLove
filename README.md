@@ -1,2 +1,2 @@
 
-Link: https://ilsads.github.io/MyLove/
+Link: https://foreverinlove-m-i.github.io/MyLove/
