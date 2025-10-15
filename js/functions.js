@@ -68,9 +68,9 @@ function getHeartPoint(angle) {
     // Dynamic scaling based on viewport
     var scale;
     if (window.innerWidth <= 600) {
-        // For mobile: use the smaller dimension to ensure heart fits
+        // For mobile: make heart larger while maintaining proportion
         var viewportScale = Math.min(window.innerWidth / 600, window.innerHeight / 800);
-        scale = viewportScale * 0.4; // Adjust this multiplier to control overall heart size
+        scale = viewportScale * 0.7; // Increased from 0.4 to 0.7 for larger heart
     } else {
         scale = 1; // Default scale for desktop
     }
@@ -169,7 +169,12 @@ function timeElapse(date){
 }
 
 function showMessages() {
-	adjustWordsPosition();
+	// Show messages container immediately on mobile
+	if(window.innerWidth <= 600) {
+		$('#messages, #loveu').show();
+		return;
+	}
+	// Desktop animation
 	$('#messages').fadeIn(5000, function() {
 		showLoveU();
 	});
