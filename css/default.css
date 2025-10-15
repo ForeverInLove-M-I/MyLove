@@ -64,8 +64,7 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		width:100%;
 		height:70vh;
 		position:relative;
-		margin:0;
-		padding-bottom:150px;
+		margin:0 0 80px;
 		display:flex;
 		align-items:center;
 		justify-content:center;
@@ -77,19 +76,19 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		top:0;
 		left:0;
 		width:100%;
-		height:70vh;
+		height:100%;
 		margin:auto;
 		transform:scale(0.9);
 		transform-origin:center center
 	}
-	/* Text container for mobile - positioned below heart */
+	/* Text container - positioned inside heart */
 	#words{
-		width:90%;
+		width:60%;
 		text-align:center;
 		position:absolute;
-		bottom:20px;
+		top:50%;
 		left:50%;
-		transform:translateX(-50%);
+		transform:translate(-50%, -50%);
 		z-index:10;
 		pointer-events:none;
 		opacity:0;
@@ -98,38 +97,45 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	#words.visible{
 		opacity:1
 	}
-	/* Message styling - below heart */
+	/* Messages inside heart - very small */
 	#messages{
+		display:none;
+		font-size:9px;
+		color:#fff;
+		margin-bottom:4px;
+		text-shadow:0 1px 3px rgba(0,0,0,0.5);
+		line-height:1.2
+	}
+	#elapseClock{
+		margin:3px 0;
+		color:#fff;
+		text-shadow:0 1px 3px rgba(0,0,0,0.5)
+	}
+	#elapseClock .digit{
+		font-size:10px;
+		color:#fff;
+		text-shadow:0 1px 3px rgba(0,0,0,0.5)
+	}
+	/* Love message below heart */
+	#loveu{
 		display:none;
 		font-size:16px;
 		color:#fff;
-		margin-bottom:10px;
+		margin-top:25px;
 		text-shadow:0 2px 4px rgba(0,0,0,0.5);
-		line-height:1.4
-	}
-	#elapseClock{
-		margin:8px 0;
-		color:#fff;
-		text-shadow:0 2px 4px rgba(0,0,0,0.5)
-	}
-	#elapseClock .digit{
-		font-size:18px;
-		color:#fff;
-		text-shadow:0 2px 4px rgba(0,0,0,0.5)
-	}
-	#loveu{
-		display:none;
-		font-size:14px;
-		color:#fff;
-		margin-top:10px;
-		text-shadow:0 2px 4px rgba(0,0,0,0.5);
-		line-height:1.4
+		line-height:1.5;
+		position:absolute;
+		bottom:-70px;
+		left:50%;
+		transform:translateX(-50%);
+		width:90%;
+		text-align:center
 	}
 	.signature{
-		margin-top:5px;
+		margin-top:8px;
 		font-style:italic;
 		color:#fff;
-		font-size:12px;
+		font-size:14px;
 		text-shadow:0 2px 4px rgba(0,0,0,0.5)
 	}
 	/* Message styling */
