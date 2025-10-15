@@ -6,24 +6,44 @@ var clientHeight = $(window).height();
 $(function () {
     // setup garden
 	$loveHeart = $("#loveHeart");
-	var offsetX = $loveHeart.width() / 2;
-	var offsetY = $loveHeart.height() / 2 - 55;
+	var offsetX, offsetY;
 	$garden = $("#garden");
 	gardenCanvas = $garden[0];
-	// keep canvas size in sync with the heart container and account for devicePixelRatio for crispness
-	var cssWidth = $garden.width();
-	var cssHeight = $garden.height();
-	var ratio = window.devicePixelRatio || 1;
-	gardenCanvas.width = Math.round(cssWidth * ratio);
-	gardenCanvas.height = Math.round(cssHeight * ratio);
-	gardenCanvas.style.width = cssWidth + 'px';
-	gardenCanvas.style.height = cssHeight + 'px';
-	// scale context to match ratio
-	gardenCtx = gardenCanvas.getContext("2d");
-	gardenCtx.scale(ratio, ratio);
-    gardenCtx.globalCompositeOperation = "lighter";
-    garden = new Garden(gardenCtx, gardenCanvas);
-	
+
+	function resizeGardenCanvas(){
+		// get computed size of the garden element (CSS-driven)
+		var rect = gardenCanvas.getBoundingClientRect();
+		var computed = window.getComputedStyle(gardenCanvas);
+		var cssWidth = Math.max(parseFloat(computed.width) || rect.width || 1, 1);
+		var cssHeight = Math.max(parseFloat(computed.height) || rect.height || 1, 1);
+		var ratio = window.devicePixelRatio || 1;
+		// set canvas internal pixel size for crisp rendering
+		gardenCanvas.width = Math.round(cssWidth * ratio);
+		gardenCanvas.height = Math.round(cssHeight * ratio);
+		// set canvas element display size to match CSS
+		gardenCanvas.style.width = cssWidth + 'px';
+		gardenCanvas.style.height = cssHeight + 'px';
+		// position behind the words and ensure parent height matches canvas
+		gardenCanvas.style.position = 'absolute';
+		gardenCanvas.style.top = '0';
+		gardenCanvas.style.left = '0';
+		gardenCanvas.style.zIndex = '0';
+		// set parent height so absolute child doesn't collapse it
+		$loveHeart.css('height', cssHeight + 'px');
+		// get 2D context and scale to devicePixelRatio
+		gardenCtx = gardenCanvas.getContext("2d");
+		// reset any existing transform then scale
+		gardenCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+		gardenCtx.globalCompositeOperation = "lighter";
+		// update offset used by heart point calculations
+		offsetX = $loveHeart.width() / 2;
+		offsetY = $loveHeart.height() / 2 - 55;
+	}
+
+	// initial sizing
+	resizeGardenCanvas();
+	garden = new Garden(gardenCtx, gardenCanvas);
+
 
     // renderLoop
     setInterval(function () {
@@ -32,11 +52,14 @@ $(function () {
 });
 
 $(window).resize(function() {
-    var newWidth = $(window).width();
-    var newHeight = $(window).height();
-    if (newWidth != clientWidth && newHeight != clientHeight) {
-        location.replace(location);
-    }
+	// debounce resize to avoid excessive work
+	clearTimeout(window._loveResizeTimeout);
+	window._loveResizeTimeout = setTimeout(function(){
+		clientWidth = $(window).width();
+		clientHeight = $(window).height();
+		// resize canvas and keep layout stable
+		if (typeof resizeGardenCanvas === 'function') resizeGardenCanvas();
+	}, 150);
 });
 
 function getHeartPoint(angle) {
