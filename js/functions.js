@@ -174,27 +174,27 @@ function timeElapse(date){
 }
 
 function showMessages() {
-	// Apply mobile-specific styles directly
-	if (window.innerWidth <= 600) {
-		$('#messages').css({
-			'font-size': '8px',
-			'margin-bottom': '3px',
-			'line-height': '1.1'
-		});
-		$('#elapseClock').css({
-			'margin': '2px 0',
-			'font-size': '8px'
-		});
-		$('#elapseClock .digit').css({
-			'font-size': '9px'
-		});
-	}
-	
 	// Delay the appearance of the words container
 	setTimeout(function() {
 		$('#words').addClass('visible');
 		setTimeout(function() {
 			$('#messages').fadeIn(2000, function() {
+				// Apply mobile-specific styles after fade in
+				if (window.innerWidth <= 600) {
+					$('#messages').css({
+						'font-size': '8px',
+						'margin-bottom': '3px',
+						'line-height': '1.1',
+						'display': 'block'
+					});
+					$('#elapseClock').css({
+						'margin': '2px 0',
+						'font-size': '8px'
+					});
+					$('#elapseClock .digit').css({
+						'font-size': '9px'
+					});
+				}
 				showLoveU();
 			});
 		}, 500);
