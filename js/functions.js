@@ -10,10 +10,17 @@ $(function () {
 	var offsetY = $loveHeart.height() / 2 - 55;
 	$garden = $("#garden");
 	gardenCanvas = $garden[0];
-	// keep canvas size in sync with the heart container
-	gardenCanvas.width = $("#loveHeart").width();
-	gardenCanvas.height = $("#loveHeart").height();
-    gardenCtx = gardenCanvas.getContext("2d");
+	// keep canvas size in sync with the heart container and account for devicePixelRatio for crispness
+	var cssWidth = $garden.width();
+	var cssHeight = $garden.height();
+	var ratio = window.devicePixelRatio || 1;
+	gardenCanvas.width = Math.round(cssWidth * ratio);
+	gardenCanvas.height = Math.round(cssHeight * ratio);
+	gardenCanvas.style.width = cssWidth + 'px';
+	gardenCanvas.style.height = cssHeight + 'px';
+	// scale context to match ratio
+	gardenCtx = gardenCanvas.getContext("2d");
+	gardenCtx.scale(ratio, ratio);
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
 	
