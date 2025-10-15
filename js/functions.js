@@ -63,17 +63,24 @@ $(window).resize(function() {
 });
 
 function getHeartPoint(angle) {
-	var t = angle / Math.PI;
-	// Calculate dynamic scale based on screen size
-	var containerSize = Math.min(window.innerWidth, window.innerHeight);
-	var baseSize = window.innerWidth <= 600 ? containerSize * 0.85 : 670; // 670 is original desktop size
-	var scale = baseSize / 670;
-	
-	// Scale heart points proportionally
-	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3)) * scale * 0.8; // 0.8 to ensure padding
-	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * scale * 0.8;
-	
-	return new Array(offsetX + x, offsetY + y);
+    var t = angle / Math.PI;
+    
+    // Dynamic scaling based on viewport
+    var scale;
+    if (window.innerWidth <= 600) {
+        // For mobile: use the smaller dimension to ensure heart fits
+        var viewportScale = Math.min(window.innerWidth / 600, window.innerHeight / 800);
+        scale = viewportScale * 0.4; // Adjust this multiplier to control overall heart size
+    } else {
+        scale = 1; // Default scale for desktop
+    }
+    
+    // Calculate heart coordinates with proper scaling
+    var x = 19.5 * (16 * Math.pow(Math.sin(t), 3)) * scale;
+    var y = -20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * scale;
+    
+    // Center the heart in the container
+    return new Array(offsetX + x, offsetY + y);
 }
 
 function startHeartAnimation() {
@@ -86,8 +93,10 @@ function startHeartAnimation() {
 		for (var i = 0; i < heart.length; i++) {
 			var p = heart[i];
 			var distance = Math.sqrt(Math.pow(p[0] - bloom[0], 2) + Math.pow(p[1] - bloom[1], 2));
-			// Adjust bloom radius based on screen size
-			var maxRadius = Garden.options.bloomRadius.max * (window.innerWidth <= 600 ? 0.8 : 1.3);
+			// Scale bloom radius based on viewport size
+			var viewportScale = window.innerWidth <= 600 ? 
+				Math.min(window.innerWidth / 600, window.innerHeight / 800) : 1;
+			var maxRadius = Garden.options.bloomRadius.max * viewportScale;
 			if (distance < maxRadius) {
 				draw = false;
 				break;
