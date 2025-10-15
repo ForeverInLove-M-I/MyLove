@@ -174,31 +174,64 @@ function timeElapse(date){
 }
 
 function showMessages() {
-	// Delay the appearance of the words container
-	setTimeout(function() {
-		$('#words').addClass('visible');
+	// Check if mobile and use different method
+	if (window.innerWidth <= 600) {
+		showMessagesMobile();
+	} else {
+		// Desktop: original method
 		setTimeout(function() {
-			$('#messages').fadeIn(2000, function() {
-				// Apply mobile-specific styles after fade in
-				if (window.innerWidth <= 600) {
-					$('#messages').css({
-						'font-size': '8px',
-						'margin-bottom': '3px',
-						'line-height': '1.1',
-						'display': 'block'
-					});
-					$('#elapseClock').css({
-						'margin': '2px 0',
-						'font-size': '8px'
-					});
-					$('#elapseClock .digit').css({
-						'font-size': '9px'
-					});
-				}
+			adjustWordsPosition();
+			$('#messages').fadeIn(5000, function() {
 				showLoveU();
 			});
-		}, 500);
-	}, 1000);
+		}, 1000);
+	}
+}
+
+function showMessagesMobile() {
+	// Mobile-specific method
+	// Show words container immediately
+	$('#words').css('opacity', '1');
+	
+	// Apply small font sizes and show messages inside heart
+	$('#messages').css({
+		'display': 'block',
+		'font-size': '8px',
+		'margin-bottom': '3px',
+		'line-height': '1.1',
+		'color': '#fff',
+		'text-shadow': '0 1px 3px rgba(0,0,0,0.5)'
+	});
+	
+	$('#elapseClock').css({
+		'margin': '2px 0',
+		'font-size': '8px',
+		'color': '#fff',
+		'text-shadow': '0 1px 3px rgba(0,0,0,0.5)'
+	});
+	
+	// Show the messages
+	$('#messages').show();
+	
+	// Apply digit styles after a brief delay to ensure elements exist
+	setTimeout(function() {
+		$('#elapseClock .digit').css({
+			'font-size': '9px',
+			'color': '#fff',
+			'text-shadow': '0 1px 3px rgba(0,0,0,0.5)'
+		});
+	}, 100);
+	
+	// Show love message below heart after delay
+	setTimeout(function() {
+		$('#loveu').css({
+			'display': 'block',
+			'font-size': '16px',
+			'color': '#fff',
+			'text-shadow': '0 2px 4px rgba(0,0,0,0.5)'
+		});
+		$('#loveu').show();
+	}, 2000);
 }
 
 function adjustWordsPosition() {
