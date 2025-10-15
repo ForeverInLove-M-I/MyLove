@@ -45,30 +45,32 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		padding:12px;
 		max-width:100%;
 		margin:0;
-		padding-top:25vh
+		padding-top:15vh
 	}
 	/* Push the code panel down and adjust size */
 	#code{
 		width:92%;
-		min-height:45vh;
+		min-height:auto;
 		padding:16px;
 		margin:0 0 30px;
 		border-radius:10px;
-		position:relative;
-		top:20vh
+		position:relative
 	}
-	/* Properly size the heart container */
+	/* Dynamic heart container sizing */
 	#loveHeart{
-		width:400px;
-		height:400px;
+		width:min(95vw, 95vh);
+		height:min(95vw, 95vh);
 		flex:none;
-		margin:40px auto;
+		margin:20px auto;
 		position:relative;
-		transform:scale(0.5);
 		transform-origin:center center;
-		padding:40px
+		padding:5vmin;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		box-sizing:border-box
 	}
-	/* Fix canvas proportions */
+	/* Responsive canvas sizing */
 	#garden{
 		width:100%;
 		height:100%;
@@ -80,26 +82,36 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	}
 	#words{
 		width:100%;
-		font-size:14px;
 		text-align:center;
 		position:relative;
-		z-index:2
+		z-index:2;
+		font-size:clamp(12px, 3vmin, 22px)
 	}
 	/* Adjust text position and size within heart */
 	#loveHeart #words{
 		top:50%;
 		left:50%;
 		transform:translate(-50%,-50%);
-		width:70%;
-		font-size:14px;
+		width:75%;
 		color:#fff;
-		text-shadow:0 1px 4px rgba(0,0,0,0.4)
+		text-shadow:0 1px 4px rgba(0,0,0,0.4);
+		padding:2vmin
 	}
-	/* Ensure messages are readable */
-	#messages{font-size:18px;line-height:1.4}
-	#loveu{font-size:16px}
-	#elapseClock{margin-top:10px}
-	#elapseClock .digit{font-size:28px}
+	/* Ensure messages are readable with dynamic sizing */
+	#messages{
+		font-size:clamp(16px, 4vmin, 30px);
+		line-height:1.4;
+		margin-bottom:2vmin
+	}
+	#loveu{
+		font-size:clamp(14px, 3.5vmin, 24px)
+	}
+	#elapseClock{
+		margin-top:2vmin
+	}
+	#elapseClock .digit{
+		font-size:clamp(24px, 6vmin, 40px)
+	}
 	#messages{font-size:20px}
 	#loveu{font-size:18px}
 	#elapseClock .digit{font-size:32px}
