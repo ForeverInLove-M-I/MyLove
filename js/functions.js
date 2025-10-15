@@ -134,15 +134,8 @@ function showMessages() {
 }
 
 function adjustWordsPosition() {
-	// Position words relative to the garden canvas using offsets.
-	// Use transform to avoid causing layout reflows/jumps.
-	var gardenPos = $("#garden").position();
-	$('#words').css({
-		position: 'absolute',
-		top: gardenPos.top + 180 + 'px',
-		left: gardenPos.left + 70 + 'px',
-		transform: 'translateZ(0)'
-	});
+	// No-op: positioning is handled by CSS to ensure words remain inside the heart at all sizes.
+	return;
 }
 
 function adjustCodePosition() {
@@ -157,7 +150,12 @@ function adjustCodePosition() {
 }
 
 function showLoveU() {
-	$('#loveu').fadeIn(3000);
+	$('#loveu').fadeIn(3000, function(){
+		// start the snake-like glow after it's visible
+		setTimeout(function(){
+			$('#loveu').addClass('glow-animate');
+		}, 400);
+	});
 }
 
 // --- Local quick-test (no-op in browser). To run: node js/functions.js ---
