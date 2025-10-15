@@ -72,7 +72,7 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		width:100%;
 		height:70vh;
 		position:relative;
-		margin:0 0 120px;
+		margin:0 0 90px;
 		display:flex;
 		align-items:center;
 		justify-content:center;
@@ -94,7 +94,7 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		width:60%;
 		text-align:center;
 		position:absolute;
-		top:50%;
+		top:45%;
 		left:50%;
 		transform:translate(-50%, -50%);
 		z-index:10;
@@ -115,8 +115,9 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	}
 	#elapseClockMobile .digit{
 		font-size:9px;
-		color:#fff;
-		text-shadow:0 1px 3px rgba(0,0,0,0.5);
+		color:#000;
+		font-weight:bold;
+		text-shadow:none;
 		font-family:"digit"
 	}
 	/* Messages inside heart - very small (60% reduction) */
@@ -147,7 +148,7 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		text-shadow:0 2px 4px rgba(0,0,0,0.5);
 		line-height:1.5;
 		position:absolute;
-		bottom:-110px;
+		bottom:-70px;
 		left:50%;
 		transform:translateX(-50%);
 		width:90%;
