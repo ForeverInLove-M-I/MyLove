@@ -70,7 +70,7 @@ function getHeartPoint(angle) {
     if (window.innerWidth <= 600) {
         // For mobile: make heart larger while maintaining proportion
         var viewportScale = Math.min(window.innerWidth / 600, window.innerHeight / 800);
-        scale = viewportScale * 0.9; // Increased from 0.7 to 0.9 for larger heart
+        scale = viewportScale * 0.75; // Reduced from 0.9 to 0.75 for better fit
     } else {
         scale = 1; // Default scale for desktop
     }
@@ -169,15 +169,15 @@ function timeElapse(date){
 }
 
 function showMessages() {
-	// Show messages container immediately on mobile
-	if(window.innerWidth <= 600) {
-		$('#messages, #loveu').show();
-		return;
-	}
-	// Desktop animation
-	$('#messages').fadeIn(5000, function() {
-		showLoveU();
-	});
+	// Delay the appearance of the words container
+	setTimeout(function() {
+		$('#words').addClass('visible');
+		setTimeout(function() {
+			$('#messages').fadeIn(2000, function() {
+				showLoveU();
+			});
+		}, 500);
+	}, 1000);
 }
 
 function adjustWordsPosition() {
