@@ -132,7 +132,7 @@ function startHeartAnimation() {
 				if (progress >= str.length) {
 					clearInterval(timer);
 				}
-			}, 75);
+			}, 70);
 		});
 		return this;
 	};
