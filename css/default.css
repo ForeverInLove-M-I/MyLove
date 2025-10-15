@@ -45,27 +45,31 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		padding:0;
 		width:100%;
 		margin:0;
-		padding-top:10vh
+		padding-top:5vh
 	}
-	/* Adjust code panel */
+	/* Adjust code panel with fixed dimensions to prevent jitter */
 	#code{
 		width:90%;
-		min-height:auto;
+		height:auto;
+		min-height:200px;
 		padding:16px;
 		margin:0 0 20px;
 		border-radius:10px;
-		position:relative
+		position:relative;
+		background:rgba(255,255,255,0.85);
+		box-shadow:0 8px 24px rgba(70,40,80,0.12)
 	}
 	/* Full viewport heart container */
 	#loveHeart{
 		width:100%;
-		height:60vh;
+		height:50vh;
 		position:relative;
-		margin:0;
+		margin:0 0 20vh;
 		display:flex;
 		align-items:center;
 		justify-content:center;
-		overflow:visible
+		overflow:visible;
+		flex-direction:column
 	}
 	/* Full size canvas */
 	#garden{
@@ -77,37 +81,50 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		transform:scale(0.85);
 		transform-origin:center center
 	}
+	/* Mobile text positioning and sizing */
 	#words{
 		width:100%;
 		text-align:center;
-		position:relative;
+		position:absolute;
 		z-index:2;
-		font-size:clamp(12px, 3vmin, 22px)
+		font-size:18px;
+		bottom:-15vh;
+		left:0;
+		transform:none
 	}
-	/* Adjust text position and size within heart */
+	/* Style the text for better visibility */
 	#loveHeart #words{
-		top:50%;
+		width:90%;
+		margin:0 auto;
+		color:#333;
+		text-shadow:none;
+		padding:15px;
+		position:absolute;
+		bottom:-15vh;
 		left:50%;
-		transform:translate(-50%,-50%);
-		width:75%;
-		color:#fff;
-		text-shadow:0 1px 4px rgba(0,0,0,0.4);
-		padding:2vmin
+		transform:translateX(-50%);
+		background:rgba(255,255,255,0.9);
+		border-radius:10px;
+		box-shadow:0 4px 12px rgba(0,0,0,0.1)
 	}
-	/* Ensure messages are readable with dynamic sizing */
+	/* Message styling */
 	#messages{
-		font-size:clamp(16px, 4vmin, 30px);
+		font-size:20px;
 		line-height:1.4;
-		margin-bottom:2vmin
+		margin-bottom:15px;
+		color:#333
 	}
 	#loveu{
-		font-size:clamp(14px, 3.5vmin, 24px)
+		font-size:18px;
+		margin-top:10px;
+		color:#333
 	}
 	#elapseClock{
-		margin-top:2vmin
+		margin:15px 0
 	}
 	#elapseClock .digit{
-		font-size:clamp(24px, 6vmin, 40px)
+		font-size:24px;
+		color:#333
 	}
 	#messages{font-size:20px}
 	#loveu{font-size:18px}
