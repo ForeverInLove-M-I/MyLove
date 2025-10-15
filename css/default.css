@@ -62,10 +62,9 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	/* Full viewport heart container */
 	#loveHeart{
 		width:100%;
-		height:60vh;
+		height:70vh;
 		position:relative;
 		margin:0;
-		padding-bottom:25vh;
 		display:flex;
 		align-items:center;
 		justify-content:center;
@@ -77,50 +76,53 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		top:0;
 		left:0;
 		width:100%;
-		height:60vh;
+		height:100%;
 		margin:auto;
-		transform:scale(0.95);
+		transform:scale(1);
 		transform-origin:center center
 	}
 	/* Text container for mobile */
 	#words{
-		width:90%;
+		width:70%;
 		text-align:center;
 		position:absolute;
-		bottom:0;
+		top:50%;
 		left:50%;
-		transform:translateX(-50%);
-		background:rgba(255,255,255,0.95);
-		border-radius:12px;
-		padding:20px;
-		box-shadow:0 4px 12px rgba(0,0,0,0.1);
-		z-index:10
+		transform:translate(-50%, -50%);
+		z-index:10;
+		pointer-events:none
 	}
 	/* Message styling */
 	#messages{
 		display:block !important;
-		font-size:20px;
-		color:#333;
-		margin-bottom:15px
+		font-size:16px;
+		color:#fff;
+		margin-bottom:10px;
+		text-shadow:0 1px 3px rgba(0,0,0,0.3)
 	}
 	#elapseClock{
-		margin:15px 0;
-		color:#333
+		margin:8px 0;
+		color:#fff;
+		text-shadow:0 1px 3px rgba(0,0,0,0.3)
 	}
 	#elapseClock .digit{
-		font-size:24px;
-		color:#333
+		font-size:20px;
+		color:#fff;
+		text-shadow:0 1px 3px rgba(0,0,0,0.3)
 	}
 	#loveu{
 		display:block !important;
-		font-size:18px;
-		color:#333;
-		margin-top:15px
+		font-size:14px;
+		color:#fff;
+		margin-top:10px;
+		text-shadow:0 1px 3px rgba(0,0,0,0.3)
 	}
 	.signature{
-		margin-top:10px;
+		margin-top:5px;
 		font-style:italic;
-		color:#666
+		color:#fff;
+		font-size:12px;
+		text-shadow:0 1px 3px rgba(0,0,0,0.3)
 	}
 	/* Message styling */
 	#messages{

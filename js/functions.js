@@ -70,7 +70,7 @@ function getHeartPoint(angle) {
     if (window.innerWidth <= 600) {
         // For mobile: make heart larger while maintaining proportion
         var viewportScale = Math.min(window.innerWidth / 600, window.innerHeight / 800);
-        scale = viewportScale * 0.7; // Increased from 0.4 to 0.7 for larger heart
+        scale = viewportScale * 0.9; // Increased from 0.7 to 0.9 for larger heart
     } else {
         scale = 1; // Default scale for desktop
     }
