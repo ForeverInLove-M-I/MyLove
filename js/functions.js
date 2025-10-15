@@ -64,8 +64,10 @@ $(window).resize(function() {
 
 function getHeartPoint(angle) {
 	var t = angle / Math.PI;
-	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
-	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	// Adjust scale based on screen size
+	var scale = window.innerWidth <= 600 ? 0.6 : 1;
+	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3)) * scale;
+	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * scale;
 	return new Array(offsetX + x, offsetY + y);
 }
 
@@ -79,7 +81,9 @@ function startHeartAnimation() {
 		for (var i = 0; i < heart.length; i++) {
 			var p = heart[i];
 			var distance = Math.sqrt(Math.pow(p[0] - bloom[0], 2) + Math.pow(p[1] - bloom[1], 2));
-			if (distance < Garden.options.bloomRadius.max * 1.3) {
+			// Adjust bloom radius based on screen size
+			var maxRadius = Garden.options.bloomRadius.max * (window.innerWidth <= 600 ? 0.8 : 1.3);
+			if (distance < maxRadius) {
 				draw = false;
 				break;
 			}
@@ -90,7 +94,8 @@ function startHeartAnimation() {
 		}
 		if (angle >= 30) {
 			clearInterval(animationTimer);
-			showMessages();
+			// Add slight delay before showing messages on mobile
+			setTimeout(showMessages, window.innerWidth <= 600 ? 1000 : 0);
 		} else {
 			angle += 0.2;
 		}

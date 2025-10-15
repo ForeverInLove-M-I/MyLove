@@ -37,39 +37,66 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 /* Mobile: phones and small devices */
 @media (max-width:600px) {
 	body{font-size:15px}
-	/* stack normally: code (text) first, heart below */
-	#content{display:flex;flex-direction:column;align-items:center;padding:12px;max-width:100%;margin:30px 10px 10px}
-	/* make the code panel shorter and add margin for spacing */
-	#code{width:92%;min-height:50vh;padding:16px;margin:35px 0 20px;border-radius:10px}
-	/* make heart container smaller and centered */
-	#loveHeart{
-		width:60%;
-		max-width:240px;
-		height:auto;
-		flex:none;
-		margin:20px auto 40px;
-		position:relative
+	/* Add significant top spacing and stack vertically */
+	#content{
+		display:flex;
+		flex-direction:column;
+		align-items:center;
+		padding:12px;
+		max-width:100%;
+		margin:0;
+		padding-top:25vh
 	}
-	/* scale garden canvas proportionally but smaller */
+	/* Push the code panel down and adjust size */
+	#code{
+		width:92%;
+		min-height:45vh;
+		padding:16px;
+		margin:0 0 30px;
+		border-radius:10px;
+		position:relative;
+		top:20vh
+	}
+	/* Properly size the heart container */
+	#loveHeart{
+		width:300px;
+		height:300px;
+		flex:none;
+		margin:20px auto;
+		position:relative;
+		transform:scale(0.6);
+		transform-origin:center center
+	}
+	/* Fix canvas proportions */
 	#garden{
 		width:100%;
-		height:60vw;
-		max-height:240px;
+		height:100%;
 		position:absolute;
 		top:0;
 		left:0
 	}
-	#words{width:100%;font-size:14px;text-align:center}
-	/* position text more precisely inside heart */
+	#words{
+		width:100%;
+		font-size:14px;
+		text-align:center;
+		position:relative;
+		z-index:2
+	}
+	/* Adjust text position and size within heart */
 	#loveHeart #words{
-		top:42%;
+		top:50%;
 		left:50%;
 		transform:translate(-50%,-50%);
-		width:65%;
-		font-size:12px;
+		width:70%;
+		font-size:14px;
 		color:#fff;
 		text-shadow:0 1px 4px rgba(0,0,0,0.4)
 	}
+	/* Ensure messages are readable */
+	#messages{font-size:18px;line-height:1.4}
+	#loveu{font-size:16px}
+	#elapseClock{margin-top:10px}
+	#elapseClock .digit{font-size:28px}
 	#messages{font-size:20px}
 	#loveu{font-size:18px}
 	#elapseClock .digit{font-size:32px}
