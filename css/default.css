@@ -72,7 +72,7 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		width:100%;
 		height:70vh;
 		position:relative;
-		margin:0 0 70px;
+		margin:0 0 60px;
 		display:flex;
 		align-items:center;
 		justify-content:center;
@@ -94,11 +94,16 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		width:60%;
 		text-align:center;
 		position:absolute;
-		top:40%;
+		top:35%;
 		left:50%;
 		transform:translate(-50%, -50%);
 		z-index:10;
-		pointer-events:none
+		pointer-events:none;
+		opacity:0;
+		transition:opacity 2s ease-in
+	}
+	#wordsMobile.visible{
+		opacity:1
 	}
 	#messagesMobile{
 		font-size:8px;
@@ -149,11 +154,16 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		text-shadow:0 2px 4px rgba(0,0,0,0.5);
 		line-height:1.5;
 		position:absolute;
-		bottom:-50px;
+		bottom:-35px;
 		left:50%;
 		transform:translateX(-50%);
 		width:90%;
-		text-align:center
+		text-align:center;
+		opacity:0;
+		transition:opacity 2s ease-in
+	}
+	#loveuMobile.visible{
+		opacity:1
 	}
 	#loveuMobile .signature{
 		margin-top:10px;
@@ -163,9 +173,17 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		text-shadow:0 2px 4px rgba(0,0,0,0.5);
 		display:block
 	}
-	#icon{font-size:48px}
-	/* hide small inline heart inside the code panel on phones to avoid duplicate icons */
-	#heartspan{display:none}
+	#icon{
+		font-size:48px;
+		color:#ff6b8a;
+		display:inline-block
+	}
+	/* Show clickable heart on mobile */
+	#heartspan{
+		display:block;
+		text-align:center;
+		margin:15px 0
+	}
 	/* ensure the transform-based centering doesn't create overflow */
 	#code{transform:none}
 }

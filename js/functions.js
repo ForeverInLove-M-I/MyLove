@@ -187,10 +187,15 @@ function showMessages() {
 }
 
 function showMessagesMobile() {
-	// Mobile text is already visible in HTML, no need to fade in
-	// Mobile elements are automatically shown by CSS
-	// Messages inside heart are already styled by CSS
-	// Just ensure they're visible (they should be by default now)
+	// Fade in mobile text after heart animation completes
+	setTimeout(function() {
+		$('#wordsMobile').addClass('visible');
+	}, 500);
+	
+	// Fade in love message after a delay
+	setTimeout(function() {
+		$('#loveuMobile').addClass('visible');
+	}, 2500);
 }
 
 function adjustWordsPosition() {
