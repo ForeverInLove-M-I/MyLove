@@ -30,8 +30,8 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 
 /* when .glow-animate is present, run the snake animation endlessly */
 .glow-animate::before{
-	animation: snakeGlow 2.6s ease-in-out infinite;
-	opacity: 1;
+		animation: snakeGlow 2.6s ease-in-out infinite;
+		opacity: 1;
 }
 
 @keyframes snakeGlow{
@@ -42,10 +42,37 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 	100% { left: 120%; width: 30%; opacity: 0 }
 }
 
-/* subtle text highlight to complement the glow */
-.glow-animate{
-	/* add a tiny soft white inner glow via text-shadow */
-	text-shadow: 0 0 6px rgba(255,255,255,0.12), 0 1px 0 rgba(0,0,0,0.04);
+/* NEW: make the glow apply specifically around the .glow-text span */
+.glow-text{position:relative;display:inline-block;color:inherit}
+.glow-text::after{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: -100%;
+	transform: translateY(-50%);
+	height: 1.2em;
+	width: 100%;
+	pointer-events: none;
+	background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
+	filter: blur(6px);
+	mix-blend-mode: screen;
+	opacity: 0;
+}
+.glow-animate .glow-text::after{
+	animation: glowSlide 2.2s ease-in-out forwards;
+	opacity: 1;
+}
+
+@keyframes glowSlide{
+	0% { left: -100%; opacity: 0 }
+	15% { opacity: 1 }
+	60% { left: 100%; opacity: 1 }
+	100% { left: 200%; opacity: 0 }
+}
+
+/* small outline glow to emphasize border */
+.glow-animate .glow-text{
+	text-shadow: 0 0 8px rgba(255,255,255,0.18), 0 1px 0 rgba(0,0,0,0.04);
 }
 #clickSound{display:none}
 #code{width:440px;min-height:400px;color:#2b2030;font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";font-size:13px;background:rgba(255,255,255,0.85);padding:24px;border-radius:12px;box-shadow:0 8px 24px rgba(70,40,80,0.12);margin:20px}
@@ -69,15 +96,19 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 /* Mobile: phones and small devices */
 @media (max-width:600px) {
 	body{font-size:15px}
-	#content{display:flex;flex-direction:column-reverse;align-items:center;padding:12px;max-width:100%;margin:10px}
-	#code{width:100%;min-height:260px;padding:16px;margin:10px 0;border-radius:10px}
-	#loveHeart{width:100%;height:auto;flex:none;margin:0}
-		/* make canvas responsive: use viewport width to scale nicely on phones */
-		#garden{width:100%;height:60vw;max-height:520px}
+	/* stack normally: code (text) first, heart below */
+	#content{display:flex;flex-direction:column;align-items:center;padding:12px;max-width:100%;margin:10px}
+	/* make the code panel tall to push the heart below the fold so user scrolls */
+	#code{width:100%;min-height:72vh;padding:16px;margin:10px 0;border-radius:10px}
+	#loveHeart{width:100%;height:auto;flex:none;margin:24px 0 40px 0}
+	/* make canvas responsive: use viewport width to scale nicely on phones */
+	#garden{width:100%;height:60vw;max-height:520px}
 	#words{width:100%;font-size:18px;text-align:center}
 	#messages{font-size:22px}
 	#elapseClock .digit{font-size:32px}
 	#icon{font-size:48px}
+	/* hide small inline heart inside the code panel on phones to avoid duplicate icons */
+	#heartspan{display:none}
 	/* ensure the transform-based centering doesn't create overflow */
 	#code{transform:none}
 }
