@@ -65,10 +65,13 @@ $(window).resize(function() {
 function getHeartPoint(angle) {
 	var t = angle / Math.PI;
 	// Adjust scale based on screen size
-	var scale = window.innerWidth <= 600 ? 0.6 : 1;
+	var scale = window.innerWidth <= 600 ? 0.45 : 1;
+	// Add padding to ensure heart doesn't touch edges
 	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3)) * scale;
 	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * scale;
-	return new Array(offsetX + x, offsetY + y);
+	// Adjust vertical position slightly down on mobile
+	var mobileOffset = window.innerWidth <= 600 ? 20 : 0;
+	return new Array(offsetX + x, offsetY + y + mobileOffset);
 }
 
 function startHeartAnimation() {
