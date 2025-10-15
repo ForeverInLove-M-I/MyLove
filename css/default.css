@@ -98,7 +98,7 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		opacity:1
 	}
 	/* Messages inside heart - very small (60% reduction) */
-	#messages{
+	#loveHeart #words #messages{
 		display:none !important;
 		font-size:8px !important;
 		color:#fff !important;
@@ -106,15 +106,17 @@ body{margin:0;padding:0;background:linear-gradient(180deg, #efe6fb 0%, #eadff8 5
 		text-shadow:0 1px 3px rgba(0,0,0,0.5) !important;
 		line-height:1.1 !important
 	}
-	#elapseClock{
+	#loveHeart #words #elapseClock{
 		margin:2px 0 !important;
 		color:#fff !important;
-		text-shadow:0 1px 3px rgba(0,0,0,0.5) !important
+		text-shadow:0 1px 3px rgba(0,0,0,0.5) !important;
+		font-size:8px !important
 	}
-	#elapseClock .digit{
+	#loveHeart #words #elapseClock .digit{
 		font-size:9px !important;
 		color:#fff !important;
-		text-shadow:0 1px 3px rgba(0,0,0,0.5) !important
+		text-shadow:0 1px 3px rgba(0,0,0,0.5) !important;
+		font-family:"digit" !important
 	}
 	/* Love message below heart - positioned further down */
 	#loveu{
